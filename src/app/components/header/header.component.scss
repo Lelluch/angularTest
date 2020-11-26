@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 25px;
+  background-color: rgba(146, 146, 146, 0.5);
+  width: 100%;
+  img {
+    width: 75px;
+    height: 75px;
+    margin-right: 10px;
+    padding-bottom: 1.34375em;
+  }
+  .example-form {
+    width: 60%;
+    display: flex;
+
+    button {
+      height: 50px;
+      width: 20%;
+      background-color:rgba(57,73,155,1);
+    }
+  }
+  .example-full-width {
+    width: 80%;
+  }
+}
