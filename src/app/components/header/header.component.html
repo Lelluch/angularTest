@@ -1,10 +1,25 @@
 <div class="header">
-  <img [src]="imgSrc" />
+  <div class="conteiner">
   <form class="example-form">
+    <img [src]="imgSrc" />
     <mat-form-field class="example-full-width">
       <mat-label>Search...</mat-label>
       <input matInput />
     </mat-form-field>
-    <button mat-raised-button color="primary">search</button>
+
+    <button type="submit" mat-raised-button color="primary">search</button>
+
+    <div class="button-container">
+      <button mat-raised-button color="primary" aria-label="Setting">
+        <mat-icon class="icons">tune</mat-icon>
+      </button>
+    </div>
   </form>
+  <div class="button-login">
+    <span class="log-name">Your Name</span>
+    <button mat-raised-button color="primary" aria-label="Setting">
+      <mat-icon class="icons">account_circle</mat-icon>
+    </button>
+  </div>
+</div>
 </div>
