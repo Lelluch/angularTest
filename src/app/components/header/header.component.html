@@ -1,25 +1,41 @@
-<div class="header">
-  <div class="conteiner">
-  <form class="example-form">
-    <img [src]="imgSrc" />
-    <mat-form-field class="example-full-width">
-      <mat-label>Search...</mat-label>
-      <input matInput />
-    </mat-form-field>
+<header>
+  <div class="header-top">
+    <div class="conteiner">
+      <form class="example-form">
+        <img [src]="imgSrc" />
+        <mat-form-field class="example-full-width">
+          <mat-label>Search...</mat-label>
+          <input matInput #searchInput/>
+        </mat-form-field>
 
-    <button type="submit" mat-raised-button color="primary">search</button>
+        <button type="submit" mat-raised-button color="primary">search</button>
 
-    <div class="button-container">
-      <button mat-raised-button color="primary" aria-label="Setting">
-        <mat-icon class="icons">tune</mat-icon>
-      </button>
+        <div class="button-container">
+          <button
+            mat-raised-button
+            color="primary"
+            aria-label="Setting"
+            type="button"
+            (click)="settingToggle=!settingToggle"
+          >
+            <mat-icon class="icons">tune</mat-icon>
+          </button>
+        </div>
+      </form>
+      <div class="button-login">
+        <span class="log-name">Your Name</span>
+        <button mat-raised-button color="primary" aria-label="Setting">
+          <mat-icon class="icons">account_circle</mat-icon>
+        </button>
+      </div>
     </div>
-  </form>
-  <div class="button-login">
-    <span class="log-name">Your Name</span>
-    <button mat-raised-button color="primary" aria-label="Setting">
-      <mat-icon class="icons">account_circle</mat-icon>
-    </button>
   </div>
-</div>
-</div>
+  <div *ngIf="settingToggle" class="header-bottom">
+    <p>
+      <span>Sorting by: </span>
+      <a href="#">date</a>
+      <a href="#">count of views</a>
+      <a href="#">by world or sentance</a>
+    </p>
+  </div>
+</header>

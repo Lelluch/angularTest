@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -6,8 +6,18 @@ import { Component } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent  {
- 
- imgSrc='/assets/img/logo2.png'
+export class HeaderComponent implements OnInit {
+
+
+  imgSrc = '/assets/img/logo2.png'
+  settingToggle = false
+
+
+  ngOnInit(): void {
+
+
+  }
+
+
 
 }
