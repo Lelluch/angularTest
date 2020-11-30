@@ -5,10 +5,17 @@
         <img [src]="imgSrc" />
         <mat-form-field class="example-full-width">
           <mat-label>Search...</mat-label>
-          <input matInput #searchInput/>
+          <input matInput (input)="search($event)" />
         </mat-form-field>
 
-        <button type="submit" mat-raised-button color="primary">search</button>
+        <button
+          type="button"
+          (click)="find()"
+          mat-raised-button
+          color="primary"
+        >
+          search
+        </button>
 
         <div class="button-container">
           <button
@@ -16,7 +23,7 @@
             color="primary"
             aria-label="Setting"
             type="button"
-            (click)="settingToggle=!settingToggle"
+            (click)="settingToggle = !settingToggle"
           >
             <mat-icon class="icons">tune</mat-icon>
           </button>
@@ -31,11 +38,41 @@
     </div>
   </div>
   <div *ngIf="settingToggle" class="header-bottom">
-    <p>
+    <div>
       <span>Sorting by: </span>
-      <a href="#">date</a>
-      <a href="#">count of views</a>
-      <a href="#">by world or sentance</a>
-    </p>
+      <button
+        *ngIf="isDate"
+        mat-raised-button
+        color="primary"
+        (click)="sortDataChange()"
+      >
+        <mat-icon class="icons">arrow_downward</mat-icon>date
+      </button>
+      <button
+        *ngIf="!isDate"
+        mat-raised-button
+        color="primary"
+        (click)="sortDataChange()"
+      >
+        <mat-icon class="icons">arrow_upward</mat-icon>date
+      </button>
+      <button
+        *ngIf="isVision"
+        mat-raised-button
+        color="primary"
+        (click)="sortVisionChange()"
+      >
+        <mat-icon class="icons">arrow_downward</mat-icon>count of views
+      </button>
+      <button
+        *ngIf="!isVision"
+        mat-raised-button
+        color="primary"
+        (click)="sortVisionChange()"
+      >
+        <mat-icon class="icons">arrow_upward</mat-icon>count of views
+      </button>
+      <button mat-raised-button color="primary">by world or sentance</button>
+    </div>
   </div>
 </header>

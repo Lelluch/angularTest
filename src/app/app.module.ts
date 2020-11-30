@@ -10,6 +10,10 @@ import { SearchResultItemComponent } from './components/search/search-result-ite
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchResultsBlockComponent } from './components/search/search-results-block/search-results-block.component';
 import { StyleDirective } from './directives/style.directive';
+import { FormsModule } from '@angular/forms';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
+import { DataSortPipe } from './pipes/data-sort.pipe';
+import { VisionSortPipe } from './pipes/vision-sort.pipe';
 
 @NgModule({
   declarations: [
@@ -17,13 +21,17 @@ import { StyleDirective } from './directives/style.directive';
     HeaderComponent,
     SearchResultItemComponent,
     SearchResultsBlockComponent,
-    StyleDirective
+    StyleDirective,
+    SearchFilterPipe,
+    DataSortPipe,
+    VisionSortPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    DemoMaterialModule
+    DemoMaterialModule,
+    FormsModule
   ],
   providers:  [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

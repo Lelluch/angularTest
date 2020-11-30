@@ -1,2 +1,2 @@
-<app-header></app-header>
-<app-search-results-block></app-search-results-block>
+<app-header (onSearch)="updateSearch($event)" ></app-header>
+<app-search-results-block [searchParams]="search" ></app-search-results-block>

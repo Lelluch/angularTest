@@ -63,10 +63,15 @@ header {
     width: 100%;
     display: flex;
     justify-content: center;
-    p{
-      width: 30%;
+    div{
+      width: 40%;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      button{
+        background-color: rgba(57, 73, 155, 1);
+      }
     }
   }
 }

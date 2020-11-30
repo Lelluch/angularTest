@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ISearch } from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-test-task';
+  search: ISearch = { searchParams: '', isSearch: false, isDate: true, isVision: true }
+
+  updateSearch(event: ISearch) {
+    this.search = event
+  }
 }
