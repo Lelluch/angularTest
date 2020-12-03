@@ -14,6 +14,10 @@ import { FormsModule } from '@angular/forms';
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { DataSortPipe } from './pipes/data-sort.pipe';
 import { VisionSortPipe } from './pipes/vision-sort.pipe';
+import { LodingPageComponent } from './components/loding-page/loding-page.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { DetailsPageComponent } from './components/details-page/details-page.component';
+import { ItemsService } from './components/servises/items.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,10 @@ import { VisionSortPipe } from './pipes/vision-sort.pipe';
     StyleDirective,
     SearchFilterPipe,
     DataSortPipe,
-    VisionSortPipe
+    VisionSortPipe,
+    LodingPageComponent,
+    ErrorPageComponent,
+    DetailsPageComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +41,7 @@ import { VisionSortPipe } from './pipes/vision-sort.pipe';
     FormsModule
   ],
   providers:  [
+    ItemsService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
   ],
   bootstrap: [AppComponent]

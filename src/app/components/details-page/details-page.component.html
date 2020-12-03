@@ -1,0 +1,48 @@
+<div class="detail-page">
+  <mat-card class="detail-page-card">
+    <div class="detail-page-card-header">
+      <img mat-card-image [src]="item.snippet.thumbnails.standard.url" />
+    </div>
+    <mat-card-content class="detail-page-card-content">
+      <div class="detail-page-card-content-header">
+        <mat-card-title>{{ item.snippet.title }}</mat-card-title>
+        <mat-card-subtitle>{{
+          item.snippet.publishedAt | date
+        }}</mat-card-subtitle>
+      </div>
+      <p class="detail-page-card-content-text">
+        {{ item.snippet.description }}
+      </p>
+      <div class="icons">
+        <button mat-icon-button>
+          <span
+            ><mat-icon class="icon">visibility</mat-icon
+            >{{ item.statistics.viewCount }}</span
+          >
+        </button>
+        <button mat-icon-button>
+          <span
+            ><mat-icon class="icon">thumb_up</mat-icon
+            >{{ item.statistics.likeCount }}</span
+          >
+        </button>
+        <button mat-icon-button>
+          <span
+            ><mat-icon class="icon">thumb_down</mat-icon
+            >{{ item.statistics.dislikeCount }}</span
+          >
+        </button>
+        <button mat-icon-button>
+          <span
+            ><mat-icon class="icon">comment</mat-icon
+            >{{ item.statistics.commentCount }}</span
+          >
+        </button>
+      </div>
+      <div class="status" [appStyle]="item.snippet.publishedAt"></div>
+    </mat-card-content>
+  </mat-card>
+  <button mat-raised-button class="backButton" [routerLink]="['/']">
+    <span><mat-icon class="icon">reply</mat-icon>Back</span>
+  </button>
+</div>

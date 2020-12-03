@@ -1,7 +1,7 @@
 <mat-card class="card">
   <img
     mat-card-image
-    src="{{ item.snippet.thumbnails.standard.url }}"
+    [src]="item.snippet.thumbnails.standard.url"
   />
   <mat-card-content class="card-content">
     <div class="icons">
@@ -24,7 +24,7 @@
     </div>
   </mat-card-content>
   <mat-card-actions class="btn">
-    <button mat-raised-button color="primary">more...</button>
+    <button mat-raised-button color="primary" [routerLink]="['/details',item.id]">more...</button>
   </mat-card-actions>
   <div
     class="status"

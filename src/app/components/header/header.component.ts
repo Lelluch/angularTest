@@ -1,11 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ISearch } from 'src/app/models/search-item.model';
+import { AuthService } from '../servises/auth.service';
+import { SearchService } from '../servises/search.service';
 
-export interface ISearch {
-  searchParams: string,
-  isSearch: boolean,
-  isDate: boolean,
-  isVision: boolean
-}
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,66 +12,41 @@ export interface ISearch {
 })
 export class HeaderComponent implements OnInit {
 
-  @Output() onSearch: EventEmitter<ISearch> = new EventEmitter<ISearch>()
-
   imgSrc = '/assets/img/logo2.png'
   settingToggle = false
-  searchValue = ''
-  isSearch: boolean = false
-  isDate: boolean = true
-  isVision: boolean = true
+  searchParams: ISearch = {
+    searchValue: '',
+    isDate: true,
+    isVision: true,
+  }
 
-
-
-  ngOnInit(): void {
-
+  constructor(private searchService: SearchService, private authService: AuthService, private router: Router) {
 
   }
 
-  search(event: any) {
-    this.searchValue = event.target.value
-    if (!this.searchValue.trim()) {
-      this.isSearch = false
-      this.onSearch.emit({
-        searchParams: '',
-        isSearch: this.isSearch,
-        isDate:this.isDate,
-        isVision:this.isVision
-      })
-    }
+  ngOnInit() {
+    
+  }
+
+  input(event: any) {
+    this.searchParams.searchValue = event.target.value
   }
 
   find() {
-    if (this.searchValue.trim()) {
-      this.isSearch = true
-      this.onSearch.emit({
-        searchParams: this.searchValue,
-        isSearch: this.isSearch,
-        isDate:this.isDate,
-        isVision:this.isVision
-      })
-    }
+    this.searchService.search(this.searchParams)
   }
 
   sortDataChange() {
-    this.isDate = !this.isDate
-    this.onSearch.emit({
-      searchParams: this.searchValue,
-      isSearch: this.isSearch,
-      isDate:this.isDate,
-      isVision:this.isVision
-    })
-
+    this.searchParams.isDate = !this.searchParams.isDate
+    this.searchService.search(this.searchParams)
 
   }
   sortVisionChange() {
-    this.isVision = !this.isVision
-    this.onSearch.emit({
-      searchParams: this.searchValue,
-      isSearch: this.isSearch,
-      isDate:this.isDate,
-      isVision:this.isVision
-    })
+    this.searchParams.isVision = !this.searchParams.isVision
+    this.searchService.search(this.searchParams)
   }
-
+  logout() {
+    this.authService.logout()
+    this.router.navigate(['/login'], { queryParams: { auth: false } })
+  }
 }

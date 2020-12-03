@@ -55,3 +55,9 @@ export interface IStatistics {
     favoriteCount: string;
     commentCount: string;
 }
+
+export interface ISearch {
+    searchValue: string,
+    isDate: boolean,
+    isVision: boolean
+  }

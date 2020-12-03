@@ -2,10 +2,10 @@
   <div class="header-top">
     <div class="conteiner">
       <form class="example-form">
-        <img [src]="imgSrc" />
+        <img [src]="imgSrc" [routerLink]="['/']" />
         <mat-form-field class="example-full-width">
           <mat-label>Search...</mat-label>
-          <input matInput (input)="search($event)" />
+          <input matInput (input)="input($event)" />
         </mat-form-field>
 
         <button
@@ -34,6 +34,9 @@
         <button mat-raised-button color="primary" aria-label="Setting">
           <mat-icon class="icons">account_circle</mat-icon>
         </button>
+        <button mat-raised-button color="primary" aria-label="Setting">
+          <mat-icon class="icons" (click)="logout()">exit_to_app</mat-icon>
+        </button>
       </div>
     </div>
   </div>
@@ -41,38 +44,34 @@
     <div>
       <span>Sorting by: </span>
       <button
-        *ngIf="isDate"
-        mat-raised-button
-        color="primary"
+        *ngIf="searchParams.isDate"
+        mat-flat-button
         (click)="sortDataChange()"
       >
         <mat-icon class="icons">arrow_downward</mat-icon>date
       </button>
       <button
-        *ngIf="!isDate"
-        mat-raised-button
-        color="primary"
+        *ngIf="!searchParams.isDate"
+        mat-flat-button
         (click)="sortDataChange()"
       >
         <mat-icon class="icons">arrow_upward</mat-icon>date
       </button>
       <button
-        *ngIf="isVision"
-        mat-raised-button
-        color="primary"
+        *ngIf="searchParams.isVision"
+        mat-flat-button
         (click)="sortVisionChange()"
       >
         <mat-icon class="icons">arrow_downward</mat-icon>count of views
       </button>
       <button
-        *ngIf="!isVision"
-        mat-raised-button
-        color="primary"
+        *ngIf="!searchParams.isVision"
+        mat-flat-button
         (click)="sortVisionChange()"
       >
         <mat-icon class="icons">arrow_upward</mat-icon>count of views
       </button>
-      <button mat-raised-button color="primary">by world or sentance</button>
+      <button mat-flat-button>by world or sentance</button>
     </div>
   </div>
 </header>

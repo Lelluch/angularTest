@@ -1,8 +1,8 @@
-<div class="results-block" *ngIf="true">
+<div class="results-block">
   <app-search-result-item
     *ngFor="
       let i of items
-        | searchFilter: searchParams.searchParams
+        | searchFilter: searchParams.searchValue
         | dataSort: searchParams.isDate
         | visionSort:searchParams.isVision
     "

@@ -1,0 +1,14 @@
+img{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+}
+.error-page-btn {
+  position: absolute;
+  bottom: 20%;
+  left: 25%;
+  z-index: 99;
+  color: #ffffff;
+  width: 50%;
+  background-color: rgba(57, 73, 155, 1);
+}

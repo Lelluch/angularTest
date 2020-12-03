@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import * as data from '../../../../assets/response.json';
-import { IItem, IResponse } from 'src/app/models/search-item.model';
-import { ISearch } from '../../header/header.component';
+import { Component, OnInit } from '@angular/core';
+import { IItem, ISearch } from 'src/app/models/search-item.model';
+import { ItemsService } from '../../servises/items.service';
+import {  SearchService } from '../../servises/search.service';
 
 
 @Component({
@@ -11,16 +11,18 @@ import { ISearch } from '../../header/header.component';
 })
 export class SearchResultsBlockComponent implements OnInit {
 
-  @Input() searchParams: ISearch = { searchParams: '', isSearch: false, isDate: true, isVision: true }
+  searchParams!: ISearch 
 
-  items: IItem[] = data.items
-  searchItems!: IItem[]
+  items!: IItem[]  
 
+  constructor(private itemsService:ItemsService,private searchService:SearchService){
+
+  }
 
 
   ngOnInit(): void {
-   
+    this.items=this.itemsService.getItems()
+    this.searchParams=this.searchService.searchParams
   }
-
 
 }
