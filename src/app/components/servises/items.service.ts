@@ -11,7 +11,6 @@ export class ItemsService {
     }
 
     getById(id: string) {
-        console.log(this.items.find(item => item.id === id));
         return this.items.find(item => item.id === id)
     }
 }

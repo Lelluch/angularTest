@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DetailsPageComponent } from './components/details-page/details-page.component';
-import { ErrorPageComponent } from './components/error-page/error-page.component';
-import { LodingPageComponent } from './components/loding-page/loding-page.component';
-import { SearchResultsBlockComponent } from './components/search/search-results-block/search-results-block.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: SearchResultsBlockComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LodingPageComponent },
-  { path: 'details/:id', component: DetailsPageComponent, canActivate: [AuthGuard] },
-  { path: 'error', component: ErrorPageComponent },
+  { path: '', loadChildren: () => import('./components/search/search-results-block/search-results-block.module').then(m => m.SearchResultsBlockModule), canActivate: [AuthGuard] },
+  { path: 'login', loadChildren: () => import('./components/loding-page/loding-page.module').then(m => m.LoadingPageModule) },
+  { path: 'details/:id', loadChildren: () => import('./components/details-page/details-page.module').then(m => m.DetailsPageModule), canActivate: [AuthGuard] },
+  { path: 'error', loadChildren: () => import('./components/error-page/error-page.module').then(m => m.ErrorPageModule) },
   { path: '**', redirectTo: '/error' }
 ];
 

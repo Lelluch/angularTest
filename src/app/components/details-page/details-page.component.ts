@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IItem } from 'src/app/models/search-item.model';
 import { ItemsService } from '../servises/items.service';
 
 @Component({
@@ -16,7 +15,6 @@ export class DetailsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params=>{
-      // console.log(this.itemsService.getById(params.id));
      this.item= this.itemsService.getById(params.id)
     })
   }

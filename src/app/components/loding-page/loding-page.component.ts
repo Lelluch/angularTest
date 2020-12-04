@@ -32,7 +32,7 @@ export class LodingPageComponent implements OnInit {
   login() {
     if (this.loginName.trim() && this.password.trim()) {
       this.authService.login(this.loginName, this.password)
-      this.router.navigate(['/'], { queryParams: { auth: true } })
+      this.router.navigate(['/'])
 
     }
   }
