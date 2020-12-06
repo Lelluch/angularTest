@@ -1,23 +1,28 @@
 <div class="loading-page">
   <mat-card class="loading-card">
-      <div class="loading-controls">
-    <mat-card-content class="loading-content">
-      <form class="loading-form">
-        <mat-form-field class="loading-full-width">
-          <mat-label>Login</mat-label>
-          <input matInput (input)="loginValue($event)" [value]="loginName" />
-        </mat-form-field>
-        <br/>
-        <mat-form-field class="loading-full-width">
-          <mat-label>Password</mat-label>
-          <input type="password" matInput  (input)="passwordValue($event)" [value]="password" />
-        </mat-form-field>
-        <br/>
-      </form>
-    </mat-card-content>
-    <mat-card-actions class="bottom-card">
-      <button mat-button (click)="login()">Login</button>
-    </mat-card-actions>
-</div>
+    <div class="loading-controls">
+      <mat-card-content class="loading-content">
+        <form class="loading-form" [formGroup]="form" (ngSubmit)="login()">
+          <mat-form-field class="loading-full-width" appearance="outline">
+            <mat-label>Login</mat-label>
+            <input matInput formControlName="loginName" />
+          </mat-form-field>
+          <br />
+          <mat-form-field class="loading-full-width" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" />
+          </mat-form-field>
+          <br />
+          <button
+            type="submit"
+            [ngClass]="{ disabledBtn: form.invalid }"
+            mat-button
+            [disabled]="form.invalid"
+          >
+            Login
+          </button>
+        </form>
+      </mat-card-content>
+    </div>
   </mat-card>
 </div>

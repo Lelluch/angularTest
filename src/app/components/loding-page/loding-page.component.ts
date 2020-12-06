@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, IStorageUser } from '../servises/auth.service';
 
@@ -9,31 +10,23 @@ import { AuthService, IStorageUser } from '../servises/auth.service';
 })
 export class LodingPageComponent implements OnInit {
 
-  loginName = ''
-  password = ''
+  form!: FormGroup
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     const user: IStorageUser = this.authService.getUser()
-    this.loginName = user.loginName
-    this.password = user.password
-
-  }
-
-  loginValue(event: any) {
-    this.loginName = event.target.value
-  }
-
-  passwordValue(event: any) {
-    this.password = event.target.value
+    this.form = new FormGroup({
+      loginName: new FormControl(user.loginName, Validators.required),
+      password: new FormControl(user.password, Validators.required),
+    })
   }
 
   login() {
-    if (this.loginName.trim() && this.password.trim()) {
-      this.authService.login(this.loginName, this.password)
-      this.router.navigate(['/'])
-
+    if (this.form.valid) {
+      const value = { ...this.form.value }
+      this.authService.login(value.loginName, value.password)
+      this.router.navigate(['/home'])
     }
   }
 

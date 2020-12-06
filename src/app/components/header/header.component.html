@@ -1,21 +1,12 @@
 <header>
   <div class="header-top">
     <div class="conteiner">
-      <form class="example-form">
-        <img [src]="imgSrc" [routerLink]="['/']" />
+      <form class="example-form" [formGroup]="form">
+        <img [src]="imgSrc" [routerLink]="['/home']" />
         <mat-form-field class="example-full-width">
           <mat-label>Search...</mat-label>
-          <input matInput (input)="input($event)" />
+          <input matInput  formControlName="searchValue"/>
         </mat-form-field>
-
-        <button
-          type="button"
-          (click)="find()"
-          mat-raised-button
-          color="primary"
-        >
-          search
-        </button>
 
         <div class="button-container">
           <button
