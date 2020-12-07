@@ -11,9 +11,14 @@ export interface IPageInfo {
 export interface IItem {
     kind: string;
     etag: string;
-    id: string;
+    id: IId;
     snippet: ISnippet;
-    statistics:IStatistics;
+    statistics: IStatistics;
+}
+
+export interface IId {
+    kind: string,
+    videoId: string
 }
 
 export interface ISnippet {
@@ -60,4 +65,4 @@ export interface ISearch {
     searchValue: string,
     isDate: boolean,
     isVision: boolean
-  }
+}

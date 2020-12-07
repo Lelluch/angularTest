@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IItem, ISearch } from 'src/app/models/search-item.model';
 import { ItemsService } from '../../servises/items.service';
-import {  SearchService } from '../../servises/search.service';
+import { SearchService } from '../../servises/search.service';
 
 
 @Component({
@@ -11,18 +11,29 @@ import {  SearchService } from '../../servises/search.service';
 })
 export class SearchResultsBlockComponent implements OnInit {
 
-  searchParams!: ISearch 
+  searchParams!: ISearch
+  dataIds: number[] = []
 
-  items!: IItem[]  
+  isLoading: boolean = true
 
-  constructor(private itemsService:ItemsService,private searchService:SearchService){
+  items!: IItem[]
+
+  constructor(private itemsService: ItemsService, private searchService: SearchService) {
 
   }
 
 
   ngOnInit(): void {
-    this.items=this.itemsService.getItems()
-    this.searchParams=this.searchService.searchParams
-  }
+    this.itemsService.getItems()
+      .subscribe(response => {
+        setTimeout(() => {
+          response.subscribe(data => {
+            this.items = data.items
+            this.isLoading=false
+          })
+        }, 1000);
+      })
 
+    this.searchParams = this.searchService.searchParams
+  }
 }

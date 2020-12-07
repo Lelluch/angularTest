@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       searchValue: new FormControl(this.searchParams.searchValue),
     })
-    this.sub = this.form.get("searchValue").valueChanges.subscribe(value => {
+    this.sub = this.form.controls.searchValue.valueChanges.subscribe(value => {
       this.searchParams.searchValue = value
       if (this.searchParams.searchValue.length > 3 || this.searchParams.searchValue.length === 0) {
         this.find()

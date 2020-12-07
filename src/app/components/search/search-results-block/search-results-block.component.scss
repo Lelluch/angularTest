@@ -1,6 +1,13 @@
-.results-block{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-
+.results-block {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.spinner-box {
+  width: 100%;
+  position: absolute;
+  top: 20%;
+}
+.spinner {
+  margin: 0 auto;
 }

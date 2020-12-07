@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemsService } from './components/servises/items.service';
 import { SharedPageModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SharedPageModule } from './shared/shared.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     DemoMaterialModule,
+    HttpClientModule
   ],
   providers:  [
     ItemsService,

@@ -1,5 +1,9 @@
 <div class="results-block">
-  <app-search-result-item
+  <div *ngIf="isLoading; else itemsContainer" class="spinner-box">
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
+  <ng-template #itemsContainer>
+    <app-search-result-item
     *ngFor="
       let i of items
         | searchFilter: searchParams.searchValue
@@ -8,4 +12,5 @@
     "
     [item]="i"
   ></app-search-result-item>
+  </ng-template>
 </div>

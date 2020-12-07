@@ -14,6 +14,7 @@ export class SearchResultItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void { 
+    // console.log(this.item);
     
   }
 
