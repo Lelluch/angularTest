@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import { ISearch } from 'src/app/models/search-item.model';
 import { AuthService } from '../servises/auth.service';
 import { SearchService } from '../servises/search.service';
@@ -35,12 +36,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       searchValue: new FormControl(this.searchParams.searchValue),
     })
-    this.sub = this.form.controls.searchValue.valueChanges.subscribe(value => {
-      this.searchParams.searchValue = value
-      if (this.searchParams.searchValue.length > 3 || this.searchParams.searchValue.length === 0) {
+    this.sub = this.form.controls.searchValue.valueChanges
+      .pipe(
+        filter(value => value.length > 2),
+        debounceTime(1000),
+        distinctUntilChanged(),
+      )
+      .subscribe(value => {
+        this.searchParams.searchValue = value
         this.find()
-      }
-    })
+      })
   }
   ngOnDestroy(): void {
     this.sub.unsubscribe()

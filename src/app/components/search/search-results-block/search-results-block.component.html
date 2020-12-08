@@ -4,13 +4,12 @@
   </div>
   <ng-template #itemsContainer>
     <app-search-result-item
-    *ngFor="
-      let i of items
-        | searchFilter: searchParams.searchValue
-        | dataSort: searchParams.isDate
-        | visionSort:searchParams.isVision
-    "
-    [item]="i"
-  ></app-search-result-item>
+      *ngFor="
+        let i of items
+          | dataSort: searchParams.isDate
+          | visionSort: searchParams.isVision
+      "
+      [item]="i"
+    ></app-search-result-item>
   </ng-template>
 </div>
