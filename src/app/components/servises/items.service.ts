@@ -21,7 +21,7 @@ export class ItemsService implements OnInit {
 
 
   getItems(str: string) {
-    return this.http.get<IResponse>(`${this.url}/search${this.APIKey}&type=video&part=snippet&maxResults=5&q=${str}`)
+    return this.http.get<IResponse>(`${this.url}/search${this.APIKey}&type=video&part=snippet&maxResults=4&q=${str}`)
       .pipe(
         mergeMap((data) => {
           const items: IItem[] = data.items

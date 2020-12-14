@@ -6,7 +6,6 @@ import { ISearch } from 'src/app/models/search-item.model';
 export class SearchService {
 
     searchParams: ISearch = {
-        searchValue: '',
         isDate: true,
         isVision: true,
     }
@@ -15,7 +14,6 @@ export class SearchService {
     }
 
     search(searchParams: ISearch) {
-        this.searchParams.searchValue = searchParams.searchValue
         this.searchParams.isDate = searchParams.isDate
         this.searchParams.isVision = searchParams.isVision
     }

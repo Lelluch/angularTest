@@ -1,0 +1,38 @@
+<div class="admin-page">
+  <mat-card class="admin-card">
+    <div class="admin-controls">
+      <mat-card-content class="admin-content">
+        <form class="admin-form" [formGroup]="form" (ngSubmit)="addCard()">
+          <mat-form-field class="admin-full-width" appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" />
+          </mat-form-field>
+          <br />
+          <mat-form-field class="admin-full-width" appearance="outline">
+            <mat-label>Image link</mat-label>
+            <input matInput formControlName="imgSrc" />
+          </mat-form-field>
+          <br />
+          <mat-form-field class="admin-full-width" appearance="outline">
+            <mat-label>Video link</mat-label>
+            <input matInput formControlName="linkVideo" />
+          </mat-form-field>
+          <br />
+          <mat-form-field class="admin-full-width" appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea  matInput formControlName="description" ></textarea>
+          </mat-form-field>
+          <br />
+          <button
+            type="submit"
+            [ngClass]="{ disabledBtn: form.invalid }"
+            mat-button
+            [disabled]="form.invalid"
+          >
+            Add custom card
+          </button>
+        </form>
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>

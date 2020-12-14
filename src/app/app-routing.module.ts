@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', loadChildren: () => import('./components/loding-page/loding-page.module').then(m => m.LoadingPageModule) },
   { path: 'home', loadChildren: () => import('./components/search/search-results-block/search-results-block.module').then(m => m.SearchResultsBlockModule), canActivate: [AuthGuard], canLoad: [AuthGuard] },
+  { path: 'admin', loadChildren: () => import('./components/admin-page/admin-page.module').then(m => m.AdminPageModule), canActivate: [AuthGuard], canLoad: [AuthGuard] },
   { path: 'home/details/:id', loadChildren: () => import('./components/details-page/details-page.module').then(m => m.DetailsPageModule), canActivate: [AuthGuard], canLoad: [AuthGuard] },
   { path: '**', loadChildren: () => import('./components/error-page/error-page.module').then(m => m.ErrorPageModule) },
 

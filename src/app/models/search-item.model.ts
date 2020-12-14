@@ -16,6 +16,15 @@ export interface IItem {
     statistics: IStatistics;
 }
 
+export interface ICustomItem {
+    title: string;
+    description: string;
+    imgSrc: string;
+    linkVideo: string;
+    date: string;
+    id: string;
+}
+
 export interface IId {
     kind: string,
     videoId: string
@@ -62,7 +71,6 @@ export interface IStatistics {
 }
 
 export interface ISearch {
-    searchValue: string,
     isDate: boolean,
     isVision: boolean
 }

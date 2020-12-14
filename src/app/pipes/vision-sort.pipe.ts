@@ -7,9 +7,12 @@ import { IItem } from '../models/search-item.model';
 export class VisionSortPipe implements PipeTransform {
 
   transform(items: IItem[], sort: boolean): any {
-    const dataSort = items.sort((a, b) => {
-      return Number(b.statistics.viewCount) - Number(a.statistics.viewCount)
-    })
-    return sort ? dataSort : dataSort.reverse()
+    if (items.length) {
+      const dataSort = items.sort((a, b) => {
+        return Number(b.statistics.viewCount) - Number(a.statistics.viewCount)
+      })
+      return sort ? dataSort : dataSort.reverse()
+    }
+    return items
   }
 }

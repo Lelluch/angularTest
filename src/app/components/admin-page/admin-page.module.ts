@@ -3,26 +3,22 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DemoMaterialModule } from 'src/app/material.module';
 import { SharedPageModule } from 'src/app/shared/shared.module';
-import { CustomItemPageComponent } from '../custom-item-page/custom-item-page.component';
-import { SearchResultItemComponent } from '../search-result-item/search-result-item.component';
-import { SearchResultsBlockComponent } from './search-results-block.component';
+import { AdminPageComponent } from './admin-page.component';
 
 @NgModule({
     declarations:[
-        SearchResultsBlockComponent,
-        SearchResultItemComponent,
-        CustomItemPageComponent
+        AdminPageComponent
     ],
     imports:[
         SharedPageModule,
         CommonModule,
         DemoMaterialModule,
         RouterModule.forChild([
-            { path: '', component: SearchResultsBlockComponent  },
+            { path: '', component: AdminPageComponent },
         ])
     ],
     exports:[RouterModule]
 })
-export class SearchResultsBlockModule{
+export class AdminPageModule{
 
 }

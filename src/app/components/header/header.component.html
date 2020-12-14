@@ -5,7 +5,7 @@
         <img [src]="imgSrc" [routerLink]="['/home']" />
         <mat-form-field class="example-full-width">
           <mat-label>Search...</mat-label>
-          <input matInput  formControlName="searchValue"/>
+          <input matInput formControlName="searchValue" />
         </mat-form-field>
 
         <div class="button-container">
@@ -21,11 +21,11 @@
         </div>
       </form>
       <div class="button-login">
-        <span class="log-name">Your Name</span>
-        <button mat-raised-button color="primary" [routerLink]="['/login']" >
+        <span class="log-name">{{ user$ | async }}</span>
+        <button mat-raised-button color="primary" [routerLink]="['/admin']">
           <mat-icon class="icons">account_circle</mat-icon>
         </button>
-        <button mat-raised-button color="primary" >
+        <button mat-raised-button color="primary">
           <mat-icon class="icons" (click)="logout()">exit_to_app</mat-icon>
         </button>
       </div>

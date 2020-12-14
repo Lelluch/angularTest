@@ -1,9 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { distinctUntilChanged, mergeMap } from 'rxjs/operators';
-import { IItem, ISearch } from 'src/app/models/search-item.model';
-import { ItemsService } from '../../servises/items.service';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ICustomItem, IItem, ISearch } from 'src/app/models/search-item.model';
+import { IState } from 'src/app/store/app.state';
 import { SearchService } from '../../servises/search.service';
+import { Store } from '@ngrx/store';
+import { getCustomItems, getItems, getLoading } from 'src/app/store/app.selectors';
+import { map } from 'rxjs/operators';
+import { SetLoading } from 'src/app/store/app.actions';
 
 
 @Component({
@@ -11,46 +14,28 @@ import { SearchService } from '../../servises/search.service';
   templateUrl: './search-results-block.component.html',
   styleUrls: ['./search-results-block.component.scss']
 })
-export class SearchResultsBlockComponent implements OnInit, OnDestroy {
+export class SearchResultsBlockComponent implements OnInit {
 
-  sub!: Subscription
   searchParams!: ISearch
   dataIds: number[] = []
 
-  isLoading: boolean = false
+  isLoading$!: Observable<boolean>
 
-  items: IItem[] = []
+  items$!: Observable<IItem[]>
+  customItems$!: Observable<ICustomItem[]>
 
-  constructor(private itemsService: ItemsService, private searchService: SearchService) {
+  constructor(private searchService: SearchService, private store: Store<IState>) {
 
   }
-
 
   ngOnInit(): void {
     this.searchParams = this.searchService.searchParams
-    const stream$ = new Observable<any>(obs => {
-
-      setInterval(() => {
-        obs.next(this.searchService.searchParams.searchValue)
-      }, 1000)
-    })
-
-    this.sub = stream$
-      .pipe(
-        distinctUntilChanged(),
-        mergeMap(value => {
-          this.isLoading = true
-          return this.itemsService.getItems(value)
-        })
-      )
-      .subscribe(data => {
-        console.log(data);
-        this.items = data.items
-        this.isLoading = false        
-      })
-
+    this.isLoading$ = this.store.select(getLoading)
+    this.items$ = this.store.select(getItems).pipe(map(items => {
+      this.store.dispatch(SetLoading({ isLoading: false }))
+      return [...items]
+    }))
+    this.customItems$ = this.store.select(getCustomItems).pipe(map(customItems => [...customItems]))
   }
-  ngOnDestroy(): void {
-    this.sub.unsubscribe()
-  }
+
 }

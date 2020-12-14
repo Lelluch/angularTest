@@ -1,0 +1,18 @@
+<div class="custom-page">
+  <mat-card class="custom-page-card">
+    <div class="custom-page-card-header">
+      <img mat-card-image [src]="customItem.imgSrc" />
+    </div>
+    <mat-card-content class="custom-page-card-content">
+      <div class="custom-page-card-content-header">
+        <mat-card-title>{{ customItem.title }}</mat-card-title>
+        <mat-card-subtitle>{{ customItem.date | date }}</mat-card-subtitle>
+      </div>
+      <p class="custom-page-card-content-text">
+        {{ customItem.description }}
+      </p>
+
+      <div class="status" [appStyle]="customItem.date"></div>
+    </mat-card-content>
+  </mat-card>
+</div>
